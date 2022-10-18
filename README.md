@@ -15,7 +15,6 @@ geometries based on coordinate information in the input data.
 
 - Don’t forget to check out the [hints for this week’s
 exercise](https://autogis-site.readthedocs.io/en/latest/lessons/lesson-1/exercise-1.html#hints)
-(not only) if you’re facing difficulties.
 
 - Scores on this exercise are out of **20 points**.
 
@@ -25,7 +24,7 @@ exercise](https://autogis-site.readthedocs.io/en/latest/lessons/lesson-1/exercis
 You can always start working by removing this line of comment: 
 
 ```
-# YOUR CODE HERE
+# ADD YOUR CODE HERE
 
 ```
 
