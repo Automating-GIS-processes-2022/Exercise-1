@@ -25,14 +25,10 @@ You can always start working by removing this line of comment:
 
 ```
 # ADD YOUR CODE HERE
-
 ```
 
-We are checking your solutions semi-automatically using
-[nbgrader](https://nbgrader.readthedocs.io/en/stable/index.html#) which is a
-package for creating and grading assingments in Jupyter Notebooks. Please use
-the suggested variable names when writing your code so that our hidden tests
-work smoothly :)
+We are checking your solutions semi-automatically Please use the suggested
+variable names when writing your code so that our hidden tests work smoothly :)
 
 #### Non-editable code cells
 Some of the code-cells are ‘non-editable’ which means that you are supposed to
