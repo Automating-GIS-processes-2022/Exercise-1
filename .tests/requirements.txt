@@ -1,0 +1,7 @@
+ipykernel
+nbconvert
+nbformat
+pytest
+
+pandas
+shapely

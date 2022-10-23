@@ -1,0 +1,50 @@
+# vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab:
+
+name: Compute a preliminary grade from currently submitted assignment
+
+on:
+  pull_request_target:
+    paths: 
+      - *.ipynb
+    types: [synchronize, reopened]
+  workflow_dispatch:
+
+jobs:
+  grade-assignment:
+    name: Compute a preliminary grade
+    runs-on: ubuntu-latest
+    container: python:3
+    steps:
+      - name: Checkout head
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: head
+
+      - name: Checkout base
+        uses: actions/checkout@v3
+        with:
+          path: base
+
+      - name: Copy tests from base
+        run: |
+          cp -Rfv base/.tests/ head/
+
+      - name: Install required Python packages
+        run: pip install -r base/.tests/requirements.txt
+
+      - name: Grade assignment (pytest+)
+        id: grading
+        env:
+          STUDENT_USERNAME: ${{ github.event.pull_request.head.user.login }}
+        run: |
+          cd head
+          python .test/grade-assignment.py >> $GITHUB_OUTPUT
+
+      - name: Add a comment to the pull request
+        uses: peter-evans/create-or-update-comment@v2
+        env: ${{ from JSON(steps.grading.outputs.FEEDBACK) }}
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: ${{ env.body }}
+          reactions: ${{ env.reaction }}

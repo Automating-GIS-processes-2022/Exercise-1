@@ -18,9 +18,11 @@ exercise](https://autogis-site.readthedocs.io/en/latest/lessons/lesson-1/exercis
 
 - Scores on this exercise are out of **20 points**.
 
+
 ## Notes
 
 #### Solution code cells
+
 You can always start working by removing this line of comment: 
 
 ```
@@ -28,12 +30,23 @@ You can always start working by removing this line of comment:
 ```
 
 We are checking your solutions semi-automatically. Please use the suggested
-variable names when writing your code, so that our hidden tests work smoothly :)
+variable names when writing your code. 
 
 #### Non-editable code cells
+
 Some of the code-cells are ‘non-editable’ which means that you are supposed to
 run them, but you are not able to edit them. These non-editable code cells
 should help you test your code while you proceed. 
+
+#### Immediate feedback
+
+Whenever you push and submit your work, an automated process will check your
+submission and tell you how many points you have achieved, so far. The feedback
+includes a list of possible improvements (unless there is nothing to improve on
+anymore ;) ).
+
+You can find this feedback in the ‘Pull Request’ that has been automatically
+opened when you accepted the classroom assignment.
 
 
 ## Start working
