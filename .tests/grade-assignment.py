@@ -5,6 +5,7 @@ import contextlib
 import json
 import os
 import pathlib
+import sys
 
 import pytest
 
@@ -58,9 +59,9 @@ def format_feedback(student_username, points_counter):
 
     Returns
     =======
-    str : JSON-encoded feedback that can be used as environment variables in a
-    Github `peter-evans/create-or-update-comment@v2` action (contains a ‘BODY’
-    and a ’REACTION’ value)
+    tuple(str, str) :
+        body and reaction that can be passed to
+        https://github.com/peter-evans/create-or-update-comment
     """
     points = points_counter.points
     possible_points = points_counter.possible_points
@@ -74,7 +75,7 @@ def format_feedback(student_username, points_counter):
 
     if points:
         body = (
-            f"**Great job, {student_username}!**\n"
+            f"**Great job{', ' if student_username else ''}{student_username}!**\n"
             "\n"
             "With the latest commit and push, your solution for the exercise "
             f"achieves **{points:1.0f} point{'s' if points > 1 else ''} out of "
@@ -116,15 +117,11 @@ def format_feedback(student_username, points_counter):
             "has not gained any points.\n"
             "No worries: until the deadline, you can submit as many new "
             "versions as you want.\n\n"
-            "If you feel stuck, don’t hesitate to come to the work sessions "
-            "or post a question on Slack!"
+            "UH students: If you feel stuck, don’t hesitate to come to "
+            "the work sessions or post a question on Slack!"
         )
 
-    feedback = json.dumps({
-        "body": body,
-        "reaction": reaction
-    })
-    return feedback
+    return body, reaction
 
 
 def main():
@@ -136,8 +133,21 @@ def main():
             with contextlib.redirect_stderr(devnull):
                 pytest.main([TESTS_PATH], plugins=[points_counter])
 
-    feedback = format_feedback(os.environ["STUDENT_USERNAME"], points_counter)
-    print(f"FEEDBACK={feedback:s}")
+    try:
+        student_username = os.environ["STUDENT_USERNAME"]
+    except KeyError:
+        student_username = ""
+    body, reaction = format_feedback(student_username, points_counter)
+
+    if sys.stdout.isatty():  # running interactively
+        feedback = body
+    else:  # piped into, e.g., $GITHUB_OUTPUT
+        feedback = json.dumps({
+            "body": body,
+            "reaction": reaction
+        })
+        feedback = f"FEEDBACK={feedback:s}"
+    print(feedback)
 
 
 if __name__ == "__main__":

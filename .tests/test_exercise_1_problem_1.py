@@ -56,7 +56,7 @@ class Test_Exercise_1_Problem_1:
 
     @points(
         1,
-        "The function ‘create_polygon_geometry()` still has some hick-ups."
+        "The function `create_polygon_geometry()` still has some hick-ups."
     )
     def test_create_polygon_geometry(self):
         polygon = exercise1.create_polygon_geometry(
