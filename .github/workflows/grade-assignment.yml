@@ -39,7 +39,7 @@ jobs:
           STUDENT_USERNAME: ${{ github.event.pull_request.head.user.login }}
         run: |
           cd head
-          python .test/grade-assignment.py >> $GITHUB_OUTPUT
+          python .tests/grade-assignment.py >> $GITHUB_OUTPUT
 
       - name: Add a comment to the pull request
         uses:  Automating-GIS-processes-2022/create-or-update-comment@v2.0.1
