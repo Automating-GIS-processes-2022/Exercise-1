@@ -40,7 +40,7 @@ class PointsCounter:
                     self.points += possible_points
                     if bonus_task:
                         self.bonus_tasks += 1
-                else:
+                elif error_message:  # ignore empty error messages (e.g., bonus tasks)
                     self.error_messages.append(error_message)
             except KeyError:
                 pass
@@ -74,16 +74,15 @@ def format_feedback(student_username, points_counter):
 
     if points:
         body = (
-            f"Great job, {student_username}!\n"
+            f"**Great job, {student_username}!**\n"
             "\n"
             "With the latest commit and push, your solution for the exercise "
-            f"achieves {points:1.0f} points out of {possible_points:1.0f} "
-            "possible points. \n"
-            "\n"
+            f"achieves {points:1.0f} point{'s' if points > 1 else ''} out of "
+            f"{possible_points:1.0f}. possible points. "
         )
         if percentage < 1:
             body += (
-                "Keep up the good work!\n\n"
+                "**Keep up the good work!**\n\n"
             )
             reaction = "+1"
 
@@ -101,16 +100,14 @@ def format_feedback(student_username, points_counter):
                 body += f"- {error_message}\n"
 
         else:
-            body += (
-                f"Amazing work! That’s full points! Well done!\n\n"
-            )
+            body += "**Amazing work! That’s full points! Well done!**\n\n"
             reaction = "hooray"
 
             if bonus_tasks:
                 body += (
                     f"On top that, you also completed {bonus_tasks:0.0f} "
                     f"optional task{'s' if bonus_tasks > 1 else ''}. "
-                    "Fantastic job!\n\n"
+                    "**Fantastic job!** 💪\n\n"
                 )
 
     else:  # 0 points so far
