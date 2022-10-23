@@ -77,8 +77,8 @@ def format_feedback(student_username, points_counter):
             f"**Great job, {student_username}!**\n"
             "\n"
             "With the latest commit and push, your solution for the exercise "
-            f"achieves {points:1.0f} point{'s' if points > 1 else ''} out of "
-            f"{possible_points:1.0f}. possible points. "
+            f"achieves **{points:1.0f} point{'s' if points > 1 else ''} out of "
+            f"{possible_points:1.0f}** possible points. "
         )
         if percentage < 1:
             body += (
