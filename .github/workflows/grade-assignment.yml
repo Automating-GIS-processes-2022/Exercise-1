@@ -5,7 +5,7 @@ name: Compute a preliminary grade from currently submitted assignment
 on:
   pull_request_target:
     paths: 
-      - *.ipynb
+      - '*.ipynb'
     types: [synchronize, reopened]
   workflow_dispatch:
 
