@@ -43,7 +43,7 @@ jobs:
 
       - name: Add a comment to the pull request
         uses:  Automating-GIS-processes-2022/create-or-update-comment@v2.0.1
-        env: ${{ from JSON(steps.grading.outputs.FEEDBACK) }}
+        env: ${{ fromJSON(steps.grading.outputs.FEEDBACK) }}
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: ${{ env.body }}
