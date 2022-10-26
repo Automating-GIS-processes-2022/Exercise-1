@@ -43,10 +43,11 @@ should help you test your code while you proceed.
 Whenever you push and submit your work, an automated process will check your
 submission and tell you how many points you have achieved, so far. The feedback
 includes a list of possible improvements (unless there is nothing to improve on
-anymore ;) ).
+anymore, of course ;) ).
 
-You can find this feedback in the ‘Pull Request’ that has been automatically
-opened when you accepted the classroom assignment.
+You can find this feedback in the [‘Pull Request’](../pull/1) that has been
+automatically opened when you [accepted the GitHub classroom 
+assignment](https://classroom.github.com/a/aSlecihw).
 
 
 ## Start working
