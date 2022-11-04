@@ -19,7 +19,8 @@ class Test_Exercise_1_Problem_3:
     )
     def test_problem3_task1(self, problem3):
         assert isinstance(problem3.data, pandas.DataFrame)
-        assert problem3.data.shape == (14643, 13)
+        # assert problem3.data.shape == (14643, 13)  # changed in next step
+        assert len(problem3.data) == 14643
 
     @points(
         1.5,

@@ -51,8 +51,8 @@ class Test_Exercise_1_Problem_4:
     )
     def test_problem4_task3_calculate_total_distance(self, problem4):
         lines = [
-            shapely.geometry.LineString((0, 0), (0, 10)),
-            shapely.geometry.LineString((20, 20), (20, 40)),
+            shapely.geometry.LineString([(0, 0), (0, 10)]),
+            shapely.geometry.LineString([(20, 20), (20, 40)]),
         ]
         total_length = problem4.calculate_total_distance(lines)
         assert total_length == 30
